@@ -167,6 +167,7 @@ iabbrev hte the
 " <leader>gfv (open file path in vertical split)
 " <leader>gff (open file path in horizontal split)
 " <leader>f   (fold code at indent level) <-- little buggy
+" <leader>t   (open terminal at bottom of window) 
 
 let mapleader=','
 inoremap jk <esc>
@@ -182,6 +183,7 @@ map <leader>k :NERDTreeToggle<cr>
 map <leader>c :VimuxPromptCommand<cr>
 map <leader>t :bo 15sp +te<cr>
 
+nnoremap <C-m> ]m
 nnoremap <leader>gfv :vertical <C-w>f<cr>
 nnoremap <leader>gff <C-w>f
 nnoremap <C-n> :nohl<cr>
