@@ -179,6 +179,7 @@ map <right> <nop>
 map <space> :
 map <leader>k :NERDTreeToggle<cr>
 map <leader>c :VimuxPromptCommand<cr>
+map <leader>t :bo 15sp +te<cr>
 
 nnoremap <leader>gfv :vertical <C-w>f<cr>
 nnoremap <leader>gff <C-w>f
@@ -201,6 +202,8 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
+tnoremap <Esc> <C-\><C-n>
 
 " spellcheck commands
 " ]s  Next spelling mistake
