@@ -40,6 +40,7 @@ Plug 'Quramy/vim-dtsm'
 Plug 'jason0x43/vim-js-indent'
 Plug 'mhartington/vim-typings'
 Plug 'Shougo/unite.vim'
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 " Themes
 Plug 'nanotech/jellybeans.vim' , {'as': 'jellybeans'}
@@ -54,7 +55,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
 Plug 'Quramy/tsuquyomi'
-Plug 'vim-import-js'
 
 " Vimux
 Plug 'benmills/vimux'
@@ -63,6 +63,8 @@ Plug 'benmills/vimux'
 " Plug 'terryma/vim-multiple-cursors' <-- buggy
 
 call plug#end()
+
+execute pathogen#infect()
 
 syntax on
 filetype plugin indent on
@@ -157,16 +159,36 @@ iabbrev hte the
 " Key Mapping Modifications
 " =========================
 
+" no touchy: reserved leaders
+" <leader>j   (js import word)
+" <leader>i   (js fix all imports)
+" <leader>s   (activate spell check)
+" <leader>gfv (open file path in vertical split)
+" <leader>gff (open file path in horizontal split)
+" <leader>f   (fold code at indent level) <-- little buggy
+
+let mapleader=','
+inoremap jk <esc>
+
 " Disable arrow key cursor motion
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
 
-" normal-mode settings:
 map <space> :
-nnoremap <C-n> :nohl <return>
-noremap cp yap<S-}>p
+map <leader>k :NERDTreeToggle<cr>
+map <leader>c :VimuxPromptCommand<cr>
+
+nnoremap <leader>gfv :vertical <C-w>f<cr>
+nnoremap <leader>gff <C-w>f
+nnoremap <C-n> :nohl<cr>
+nnoremap <C-g> :Gstatus<cr>
+
+nnoremap cp yap<S-}>p
+nnoremap <leader>f zc
+nnoremap <leader>a =ip
+nnoremap <leader>s :set spell!<cr>
 
 " change window size
 noremap <C-up> <C-w>+
@@ -174,25 +196,13 @@ noremap <C-down> <C-w>-
 noremap <C-left> <C-w><
 noremap <C-right> <C-w>>
 
-" switch between windows
-no <C-j> <C-w>j| "switching to below window
-no <C-k> <C-w>k| "switching to above window
-no <C-l> <C-w>l| "switching to right window
-no <C-h> <C-w>h| "switching to left window
+" switch between windows with ctrl + h,j,k,l
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
 
-
-" insert-mode settings:
-inoremap jk <esc>
-
-let mapleader=','
-
-noremap <leader>f zc
-noremap <leader>a =ip
-map <leader>k :NERDTreeToggle<CR>
- map <Leader>c :VimuxPromptCommand<CR>
-
-" set spellcheck with commands
-noremap <silent> <leader>s :set spell!<cr>
+" spellcheck commands
 " ]s  Next spelling mistake
 " [s  Previous spelling mistake
 " z=  Give suggestions (prepent 1, use first suggestions automatically)
