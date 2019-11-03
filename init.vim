@@ -28,27 +28,17 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'kien/ctrlp.vim'
 
 " Syntax
-Plug 'sheerun/vim-polyglot'
-Plug 'matthewbdaly/vim-filetype-settings'
-Plug 'elzr/vim-json'
-Plug 'pangloss/vim-javascript'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'leafgarland/typescript-vim'
-Plug 'mxw/vim-jsx'
-Plug 'Quramy/vim-js-pretty-template'
-Plug 'Quramy/vim-dtsm'
-Plug 'jason0x43/vim-js-indent'
 Plug 'mhartington/vim-typings'
+Plug 'elzr/vim-json'
+Plug 'sheerun/vim-polyglot'
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/vim-dtsm'
 Plug 'Shougo/unite.vim'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 " Themes
 Plug 'nanotech/jellybeans.vim' , {'as': 'jellybeans'}
 
-" PHP-specific integration
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'phpactor/ncm2-phpactor'
 
 " auto-completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -59,9 +49,6 @@ Plug 'Quramy/tsuquyomi'
 " Vimux
 Plug 'benmills/vimux'
 
-" multi-cursors
-" Plug 'terryma/vim-multiple-cursors' <-- buggy
-
 call plug#end()
 
 execute pathogen#infect()
@@ -69,7 +56,6 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 colorscheme jellybeans
-
 
 " Files, backups and undo
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -106,25 +92,18 @@ set nofoldenable
 
 let NERDTreeShowHidden=1
 let g:deoplete#enable_at_startup=1
-let g:airline_theme='dark' " airline theme
-let g:pymode_python = 'python3' " pymode settings
+let g:airline_theme='dark'
+let g:pymode_python = 'python3'
 let g:neomake_open_list=2
 
-" let g:VimuxUseLast=1
-" let g:VimuxUseNearest=0
-
-" python paths
+" nvim python paths
 let g:python_host_prog='/usr/local/bin/python'
 let g:python3_host_prog='/usr/local/bin/python3'
 
-autocmd StdinReadPre * let s:std_in=1 
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif 
-autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif 
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-" tsuquyomi
-" let g:tsuquyomi_shortest_import_path = 1
-
-autocmd FileType cshtml EmmetInstall 
+autocmd FileType cshtml EmmetInstall
 
 " emmet settings
 let g:user_emmet_settings = {
@@ -160,15 +139,6 @@ iabbrev hte the
 " Key Mapping Modifications
 " =========================
 
-" no touchy: reserved leaders
-" <leader>j   (js import word)
-" <leader>i   (js fix all imports)
-" <leader>s   (activate spell check)
-" <leader>gfv (open file path in vertical split)
-" <leader>gff (open file path in horizontal split)
-" <leader>f   (fold code at indent level) <-- little buggy
-" <leader>t   (open terminal at bottom of window) 
-
 let mapleader=','
 inoremap jk <esc>
 
@@ -181,16 +151,15 @@ map <right> <nop>
 map <space> :
 map <leader>k :NERDTreeToggle<cr>
 map <leader>c :VimuxPromptCommand<cr>
-map <leader>t :bo 15sp +te<cr>
+map <leader>t :15sp +te<cr>
+map <C-m> ]m
 
-nnoremap <C-m> ]m
 nnoremap <leader>gfv :vertical <C-w>f<cr>
 nnoremap <leader>gff <C-w>f
 nnoremap <C-n> :nohl<cr>
 nnoremap <C-g> :Gstatus<cr>
 
 nnoremap cp yap<S-}>p
-nnoremap <leader>f zc
 nnoremap <leader>a =ip
 nnoremap <leader>s :set spell!<cr>
 
@@ -208,9 +177,24 @@ noremap <C-l> <C-w>l
 
 tnoremap <Esc> <C-\><C-n>
 
+" nnoremap <leader>f zc <-- fold code, too buggy
 " spellcheck commands
 " ]s  Next spelling mistake
 " [s  Previous spelling mistake
 " z=  Give suggestions (prepent 1, use first suggestions automatically)
 " zg  Add mispelled to spellfile
 " zug Remove word from spellfile
+
+" Plug 'matthewbdaly/vim-filetype-settings'
+" Plug 'pangloss/vim-javascript'
+" Plug 'jelera/vim-javascript-syntax'
+" Plug 'jason0x43/vim-js-indent'
+" Plug 'Quramy/vim-js-pretty-template'
+" Plug 'mxw/vim-jsx'
+" PHP-specific integration
+" Plug 'ncm2/ncm2'
+" Plug 'roxma/nvim-yarp'
+" Plug 'phpactor/ncm2-phpactor'
+" multi-cursors
+" Plug 'terryma/vim-multiple-cursors' <-- buggy
+
