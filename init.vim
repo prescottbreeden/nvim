@@ -79,7 +79,7 @@ set autoindent         " copy indent from current line, over to the new line
 set t_Co=256           " Explicityly tell vim that the terminal supoprts 256 colors
 set list               " Show invisible characters
 set splitbelow         " New splits will be below current buffer
-set splitright         " New splits will be to the right of current buffer
+" set splitright         " New splits will be to the right of current buffer
 set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
