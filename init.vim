@@ -91,7 +91,7 @@ let g:pymode_python = 'python3'
 let g:neomake_open_list=2
 
 " nvim python paths
-let g:python_host_prog='/usr/local/bin/python'
+let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/usr/local/bin/python3'
 
 " utilisnip settings
