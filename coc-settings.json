@@ -1,1 +1,4 @@
-
+{
+  "suggest.autoTrigger": "always",
+  "suggest.minTriggerInputLength": 2
+}

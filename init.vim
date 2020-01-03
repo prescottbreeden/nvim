@@ -51,6 +51,7 @@ syntax on
 filetype plugin indent on
 colorscheme jellybeans
 
+
 " Files, backups and undo
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -86,7 +87,7 @@ set nofoldenable
 
 let NERDTreeShowHidden=1
 let g:deoplete#enable_at_startup=1
-let g:airline_theme='dark'
+let g:airline_theme='simple'
 let g:pymode_python = 'python3'
 let g:neomake_open_list=2
 
@@ -98,6 +99,9 @@ let g:python3_host_prog='/usr/bin/python3'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" ctrl-p search
+let g:ctrlp_max_files=0
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
