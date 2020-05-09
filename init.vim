@@ -33,12 +33,10 @@ Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 " Themes
 Plug 'nanotech/jellybeans.vim' , {'as': 'jellybeans'}
 
-
 " auto-completion
 Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 
 " Vimux
 Plug 'benmills/vimux'
@@ -157,10 +155,13 @@ map <leader>c :VimuxPromptCommand<cr>
 map <leader>t :15sp +te<cr>
 map <C-m> ]m
 
-nnoremap <leader>gfv :vertical <C-w>f<cr>
-nnoremap <leader>gff <C-w>f
+" not sure what these do anymore
+" nnoremap <leader>gfv :vertical <C-w>f<cr>
+nnoremap <leader>gd :vsplit gd<cr>
+
 nnoremap <C-n> :nohl<cr>
 nnoremap <C-g> :Gstatus<cr>
+nnoremap <C-c> :Gcommit<cr>
 
 nnoremap cp yap<S-}>p
 nnoremap <leader>a =ip
@@ -180,7 +181,6 @@ noremap <C-l> <C-w>l
 
 tnoremap <Esc> <C-\><C-n>
 
-" nnoremap <leader>f zc <-- fold code, too buggy
 " spellcheck commands
 " ]s  Next spelling mistake
 " [s  Previous spelling mistake
@@ -239,7 +239,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
