@@ -153,19 +153,23 @@ map <right> <nop>
 map <leader>k :NERDTreeToggle<cr>
 map <leader>c :VimuxPromptCommand<cr>
 map <leader>t :15sp +te<cr>
-map <C-m> ]m
+
 
 " not sure what these do anymore
 " nnoremap <leader>gfv :vertical <C-w>f<cr>
-nnoremap <leader>gd :vsplit gd<cr>
+" nnoremap <leader>gd :vsplit gd<cr>
+map <C-m> ]m
+nnoremap <leader>a =ip
 
 nnoremap <C-n> :nohl<cr>
 nnoremap <C-g> :Gstatus<cr>
 nnoremap <C-c> :Gcommit<cr>
 
 nnoremap cp yap<S-}>p
-nnoremap <leader>a =ip
 nnoremap <leader>s :set spell!<cr>
+
+" open cheat sheet window
+nnoremap <leader>c :nos botright 40vs ~/.config/nvim/cheats.vim<cr>
 
 " change window size
 noremap <C-up> <C-w>+
@@ -298,6 +302,9 @@ omap af <Plug>(coc-funcobj-a)
 " Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
 " nmap <silent> <C-d> <Plug>(coc-range-select)
 xmap <silent> <C-d> <Plug>(coc-range-select)
+
+" Use `:Prettier` to format current buffer
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
