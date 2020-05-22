@@ -9,7 +9,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 " Linting
-" Plug 'neomake/neomake'
+Plug 'neomake/neomake'
 Plug 'w0rp/ale'
 
 " Snippets
@@ -27,8 +27,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'kien/ctrlp.vim'
 
 " Syntax
-Plug 'sheerun/vim-polyglot'
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot', { 'commit': '8ec73a3a8974a62a613680a6b6222a77a7b99546'}
+" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 " Themes
 Plug 'nanotech/jellybeans.vim' , {'as': 'jellybeans'}
@@ -39,7 +40,7 @@ Plug 'mattn/emmet-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Vimux
-Plug 'benmills/vimux'
+" Plug 'benmills/vimux'
 
 call plug#end()
 
@@ -302,9 +303,6 @@ omap af <Plug>(coc-funcobj-a)
 " Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
 " nmap <silent> <C-d> <Plug>(coc-range-select)
 xmap <silent> <C-d> <Plug>(coc-range-select)
-
-" Use `:Prettier` to format current buffer
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')

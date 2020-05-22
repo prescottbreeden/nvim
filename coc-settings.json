@@ -1,5 +1,4 @@
 {
   "suggest.autoTrigger": "always",
-  "suggest.minTriggerInputLength": 2,
-  "coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "typescript"]
+  "suggest.minTriggerInputLength": 2
 }
