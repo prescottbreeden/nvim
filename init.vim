@@ -39,6 +39,12 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Haskell
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': './install.sh'
+    \ }
+
 " Vimux
 " Plug 'benmills/vimux'
 
@@ -102,6 +108,14 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " ctrl-p search
 let g:ctrlp_max_files=0
 
+" Automatically start language servers.
+let g:LanguageClient_autoStart = 1
+
+let g:LanguageClient_serverCommands = {
+    \ 'haskell': ['hie', '--lsp'],
+    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+    \ }
+
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
@@ -155,6 +169,15 @@ map <leader>k :NERDTreeToggle<cr>
 map <leader>c :VimuxPromptCommand<cr>
 map <leader>t :15sp +te<cr>
 
+" Haskell leader quick keys
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
+map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
+map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
+map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
+map <Leader>lb :call LanguageClient#textDocument_references()<CR>
+map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
+map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
 
 " not sure what these do anymore
 " nnoremap <leader>gfv :vertical <C-w>f<cr>
