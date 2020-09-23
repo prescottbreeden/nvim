@@ -357,3 +357,23 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " " Resume latest coc list
 " nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+" =========================
+" Vim Snippets
+" =========================
+
+function! CreateReactFunction()
+  let name = 'Name' 
+    call append(0, "import React from 'react';")
+    call append(1, "")
+    call append(2, "interface " . name ."Props {}")
+    call append(3, "export const " . name . ": React.FC<" . name . "Props> = (props) => {")
+    call append(4, "  return (")
+    call append(5, '    <>')
+    call append(6, '    </>')
+    call append(7, '  );')
+    call append(8, '};')
+endfunction
+
+map <leader>rf :call CreateReactFunction()<CR>
+
+
