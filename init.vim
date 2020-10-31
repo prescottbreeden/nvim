@@ -27,9 +27,11 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'kien/ctrlp.vim'
 
 " Syntax
-" Plug 'sheerun/vim-polyglot'
-Plug 'sheerun/vim-polyglot', { 'commit': '8ec73a3a8974a62a613680a6b6222a77a7b99546'}
+Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot', { 'commit': '8ec73a3a8974a62a613680a6b6222a77a7b99546'}
+let g:polyglot_disabled = ['rust', 'elm']
 " Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'elmcast/elm-vim'
 
 " Themes
 Plug 'nanotech/jellybeans.vim' , {'as': 'jellybeans'}
@@ -78,7 +80,7 @@ set number             " Turn on line numbering
 set relativenumber     " Turn on relative line numbering
 set nowrap             " Turn off line wrapping
 set colorcolumn=80     " column width 80 char default
-set expandtab          " Make sure that every file uses real tabs, not spaces
+set expandtab          " Make sure that every file uses spaces not tabs
 set shiftround         " Round indent to multiple of 'shiftwidth'
 set smartindent        " Do smart indenting when starting a new line
 set autoindent         " copy indent from current line, over to the new line
@@ -89,6 +91,10 @@ set splitbelow         " New splits will be below current buffer
 set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
+
+" ELM settings
+let g:elm_setup_keybindings = 0
+let g:polyglot_disabled = ['elm']
 
 let NERDTreeShowHidden=1
 let g:deoplete#enable_at_startup=1
