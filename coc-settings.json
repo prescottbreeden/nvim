@@ -1,4 +1,25 @@
 {
   "suggest.autoTrigger": "always",
-  "suggest.minTriggerInputLength": 2
+  "suggest.minTriggerInputLength": 2,
+  "prettier.singleQuote": true,
+  "prettier.bracketSpacing": false,
+  "eslint.autoFixOnSave": true,
+  "eslint.options": {
+    "configFile": ".eslintrc.json"
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "markdown",
+    "typescript",
+    "typescriptreact"
+  ]
 }

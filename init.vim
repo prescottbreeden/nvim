@@ -27,11 +27,12 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'kien/ctrlp.vim'
 
 " Syntax
-Plug 'sheerun/vim-polyglot'
-" Plug 'sheerun/vim-polyglot', { 'commit': '8ec73a3a8974a62a613680a6b6222a77a7b99546'}
-let g:polyglot_disabled = ['rust', 'elm']
-" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'elmcast/elm-vim'
+Plug 'sheerun/vim-polyglot'
+let g:polyglot_disabled = ['rust', 'elm', 'scss', 'css']
+
+" Prettify stuff
+Plug 'avh4/elm-format'
 
 " Themes
 Plug 'nanotech/jellybeans.vim' , {'as': 'jellybeans'}
@@ -39,16 +40,13 @@ Plug 'nanotech/jellybeans.vim' , {'as': 'jellybeans'}
 " auto-completion
 Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim'
 
-" Haskell
+" neovim language client
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': './install.sh'
     \ }
-
-" Vimux
-" Plug 'benmills/vimux'
 
 call plug#end()
 
@@ -94,6 +92,7 @@ set nofoldenable
 
 " ELM settings
 let g:elm_setup_keybindings = 0
+let g:elm_format_autosave = 1
 let g:polyglot_disabled = ['elm']
 
 let NERDTreeShowHidden=1
@@ -117,15 +116,11 @@ let g:ctrlp_max_files=0
 " Automatically start language servers.
 let g:LanguageClient_autoStart = 1
 
+" \ 'typescript': ['/usr/bin/typescript-language-server', '--stdio'],
 let g:LanguageClient_serverCommands = {
     \ 'haskell': ['hie', '--lsp'],
     \ 'rust': ['rustup', 'run', 'stable', 'rls'],
     \ }
-
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-autocmd FileType cshtml EmmetInstall
 
 " emmet settings
 let g:user_emmet_settings = {
@@ -137,15 +132,20 @@ let g:user_emmet_settings = {
     \  },
   \}
 
-"Make a tab equal to x spaces
-let s:tabwidth=2
-exec 'set tabstop='     .s:tabwidth
-exec 'set shiftwidth='  .s:tabwidth
-exec 'set softtabstop=' .s:tabwidth
+" Make a tab equal to x spaces
+ let s:tabwidth=2
+ exec 'set tabstop='     .s:tabwidth
+ exec 'set shiftwidth='  .s:tabwidth
+ exec 'set softtabstop=' .s:tabwidth
 
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+autocmd FileType cshtml EmmetInstall
+autocmd Filetype fsharp setlocal tabstop=4 shiftwidth=4 softtabstop=4
 
 " ========================
-" autocorrect basic typos:
+" autocorrect common typos:
 " ========================
 
 iabbrev waht what
@@ -172,10 +172,9 @@ map <left> <nop>
 map <right> <nop>
 
 map <leader>k :NERDTreeToggle<cr>
-map <leader>c :VimuxPromptCommand<cr>
 map <leader>t :15sp +te<cr>
 
-" Haskell leader quick keys
+" Language Server leader quick keys
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
 map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
@@ -187,7 +186,7 @@ map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
 
 " not sure what these do anymore
 " nnoremap <leader>gfv :vertical <C-w>f<cr>
-" nnoremap <leader>gd :vsplit gd<cr>
+" nnoremap <leader>v :vsplit<cr>
 map <C-m> ]m
 nnoremap <leader>a =ip
 
@@ -222,18 +221,10 @@ tnoremap <Esc> <C-\><C-n>
 " zg  Add mispelled to spellfile
 " zug Remove word from spellfile
 
-" Plug 'matthewbdaly/vim-filetype-settings'
-" Plug 'pangloss/vim-javascript'
-" Plug 'jelera/vim-javascript-syntax'
-" Plug 'jason0x43/vim-js-indent'
-" Plug 'Quramy/vim-js-pretty-template'
-" Plug 'mxw/vim-jsx'
-" Plug 'terryma/vim-multiple-cursors' <-- buggy
-" Plug 'mhartington/vim-typings'
-" Plug 'elzr/vim-json'
-" Plug 'Shougo/unite.vim'
-
+" =============
 " CoC Settings
+" =============
+
 " if hidden is not set, TextEdit might fail.
 set hidden
 
@@ -302,10 +293,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -345,23 +332,10 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" Using CocList
-" Show all diagnostics
-" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" " Manage extensions
-" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" " Show commands
-" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" " Find symbol of current document
-" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" " Search workspace symbols
-" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" " Do default action for next item.
-" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" " Do default action for previous item.
-" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" " Resume latest coc list
-" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+" Coc Pretter
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " =========================
 " Vim Snippets
