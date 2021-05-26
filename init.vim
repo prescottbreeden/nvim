@@ -48,6 +48,11 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': './install.sh'
     \ }
 
+" Clojure
+Plug 'Olical/conjure', {'tag': 'v4.19.0'}
+" Only in Neovim:
+Plug 'radenling/vim-dispatch-neovim'
+
 call plug#end()
 
 execute pathogen#infect()
@@ -89,6 +94,9 @@ set splitbelow         " New splits will be below current buffer
 set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
+
+" Clojure 
+let g:coc_global_extensions = ['coc-conjure']
 
 " ELM settings
 let g:elm_setup_keybindings = 0
@@ -183,6 +191,12 @@ map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
 map <Leader>lb :call LanguageClient#textDocument_references()<CR>
 map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
 map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
+
+" Clojure
+autocmd User ConjureEval if expand("%:t") =~ "^conjure-log-" | exec "normal G" | endif
+map <Leader>cgd :call ConjureDoc()<CR>
+map <Leader>ce :call ConjureEval()<CR>
+map <Leader>cef :call ConjureEvalFile()<CR>
 
 " not sure what these do anymore
 " nnoremap <leader>gfv :vertical <C-w>f<cr>
