@@ -1,3 +1,5 @@
+set pyxversion=3
+
 call plug#begin()
 
 " Airline
@@ -30,6 +32,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'elmcast/elm-vim'
 Plug 'sheerun/vim-polyglot'
 let g:polyglot_disabled = ['rust', 'elm', 'scss', 'css']
+Plug 'rust-lang/rust.vim'
 
 " Prettify stuff
 Plug 'avh4/elm-format'
@@ -55,45 +58,46 @@ Plug 'radenling/vim-dispatch-neovim'
 
 call plug#end()
 
-execute pathogen#infect()
+" execute pathogen#infect()
 
 syntax on
-filetype plugin indent on
 colorscheme jellybeans
 
+filetype on
+filetype plugin indent on
 
 " Files, backups and undo
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
-" set runtimepath^=~/.vim/bundle/ctrlp.vim " ctrl-p
 " set bg=dark            " tell vim using a dark background
-set updatetime=100
-set history=1000       " Save 1,000 items in history
-set ruler              " Show the line and column number of the cursor position
-set showcmd            " Display the incomplete commands in the bottom of your screen
-set wildmenu           " Display completion matches on your status line
-set scrolloff=5        " Show a few lines of context around the cursor
-set hlsearch           " Highlight search matches
-set incsearch          " Enable incremental searching
-set ignorecase         " Ignore case when searching
-set smartcase          " Override 'ignorecase' if search pattern has upper characters
-set smarttab
-set number             " Turn on line numbering
-set relativenumber     " Turn on relative line numbering
-set nowrap             " Turn off line wrapping
+" set runtimepath^=~/.vim/bundle/ctrlp.vim " ctrl-p
+" set splitright         " New splits will be to the right of current buffer
+set autoindent         " copy indent from current line, over to the new line
 set colorcolumn=80     " column width 80 char default
 set expandtab          " Make sure that every file uses spaces not tabs
-set shiftround         " Round indent to multiple of 'shiftwidth'
-set smartindent        " Do smart indenting when starting a new line
-set autoindent         " copy indent from current line, over to the new line
-set t_Co=256           " Explicityly tell vim that the terminal supoprts 256 colors
-set list               " Show invisible characters
-set splitbelow         " New splits will be below current buffer
-" set splitright         " New splits will be to the right of current buffer
 set foldmethod=indent
 set foldnestmax=10
+set history=1000       " Save 1,000 items in history
+set hlsearch           " Highlight search matches
+set ignorecase         " Ignore case when searching
+set incsearch          " Enable incremental searching
+set list               " Show invisible characters
 set nofoldenable
+set nowrap             " Turn off line wrapping
+set number             " Turn on line numbering
+set relativenumber     " Turn on relative line numbering
+set ruler              " Show the line and column number of the cursor position
+set scrolloff=5        " Show a few lines of context around the cursor
+set shiftround         " Round indent to multiple of 'shiftwidth'
+set showcmd            " Display the incomplete commands in the bottom of your screen
+set smartcase          " Override 'ignorecase' if search pattern has upper characters
+set smartindent        " Do smart indenting when starting a new line
+set smarttab
+set splitbelow         " New splits will be below current buffer
+set t_Co=256           " Explicityly tell vim that the terminal supoprts 256 colors
+set updatetime=100
+set wildmenu           " Display completion matches on your status line
 
 " Clojure 
 let g:coc_global_extensions = ['coc-conjure']
@@ -101,7 +105,6 @@ let g:coc_global_extensions = ['coc-conjure']
 " ELM settings
 let g:elm_setup_keybindings = 0
 let g:elm_format_autosave = 1
-let g:polyglot_disabled = ['elm']
 
 let NERDTreeShowHidden=1
 let g:deoplete#enable_at_startup=1

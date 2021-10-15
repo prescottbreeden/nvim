@@ -9,8 +9,9 @@
     "json",
     "markdown",
     "typescript",
-    "reacttypescript",
+    "typescriptreact",
     "javascript",
-    "reactjavascript"
+    "javascriptreact"
   ]
 }
+/* "prettier.semi": true, */
