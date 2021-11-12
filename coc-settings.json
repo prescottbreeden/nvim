@@ -5,7 +5,9 @@
   "suggest.autoTrigger": "always",
   "suggest.minTriggerInputLength": 2,
   "prettier.singleQuote": true,
+  "prettier.semi": true,
   "coc.preferences.formatOnSaveFiletypes": [
+    "html",
     "json",
     "markdown",
     "typescript",
@@ -14,4 +16,3 @@
     "javascriptreact"
   ]
 }
-/* "prettier.semi": true, */
