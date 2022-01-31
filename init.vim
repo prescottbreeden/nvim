@@ -73,7 +73,6 @@ Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
 
-<<<<<<< HEAD
 augroup clippy
   autocmd!
   autocmd TextYankPost *
