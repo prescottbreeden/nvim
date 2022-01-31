@@ -1,8 +1,7 @@
-" source /usr/share/vim/google/google.vim
+"source /usr/share/vim/google/google.vim
 source ~/.config/nvim/common.vim
 
 call plug#begin()
-
 
 " sync paste boards
 Plug 'ojroques/vim-oscyank'
