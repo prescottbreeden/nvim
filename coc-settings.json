@@ -4,15 +4,15 @@
   "omnisharp.trace.server": "information",
   "suggest.autoTrigger": "always",
   "suggest.minTriggerInputLength": 2,
-  "prettier.singleQuote": true,
-  "prettier.semi": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "html",
-    "json",
-    "markdown",
-    "typescript",
-    "typescriptreact",
-    "javascript",
-    "javascriptreact"
-  ]
+  // "prettier.singleQuote": true,
+  // "prettier.semi": true,
+  // "coc.preferences.formatOnSaveFiletypes": [
+  //   "html",
+  //   "json",
+  //   "markdown",
+  //   "typescript",
+  //   "typescriptreact",
+  //   "javascript",
+  //   "javascriptreact"
+  // ]
 }

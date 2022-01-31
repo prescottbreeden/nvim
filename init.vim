@@ -1,5 +1,10 @@
 call plug#begin()
 
+source /usr/share/vim/google/google.vim
+
+" sync paste boards
+Plug 'ojroques/vim-oscyank'
+
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -9,8 +14,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 " Linting
-Plug 'neomake/neomake'
-Plug 'w0rp/ale'
+" Plug 'neomake/neomake'
+" Plug 'w0rp/ale'
 
 " Snippets
 Plug 'honza/vim-snippets'
@@ -29,7 +34,7 @@ Plug 'kien/ctrlp.vim'
 " Syntax
 Plug 'elmcast/elm-vim'
 Plug 'sheerun/vim-polyglot'
-let g:polyglot_disabled = ['rust', 'elm', 'scss', 'css']
+let g:polyglot_disabled = ['rust', 'elm', 'scss', 'css', 'java']
 Plug 'rust-lang/rust.vim'
 
 " Prettify stuff
@@ -64,6 +69,19 @@ Plug 'nvim-telescope/telescope.nvim'
 " Plug 'ThePrimeagen/harpoon'
 
 call plug#end()
+
+augroup clippy
+  autocmd!
+  autocmd TextYankPost *
+\   if (
+\    v:event.regname is "" ||
+\    v:event.regname is "*" ||
+\    v:event.regname is "+" ||
+\    v:event.regname is "0"
+\   )
+\ | call OSCYankString(join(v:event.regcontents, "\n"))
+\ | endif
+augroup END
 
 " execute pathogen#infect()
 
