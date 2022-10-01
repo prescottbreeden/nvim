@@ -4,8 +4,8 @@
   "omnisharp.trace.server": "information",
   "suggest.autoTrigger": "always",
   "suggest.minTriggerInputLength": 2,
-  // "prettier.singleQuote": true,
-  // "prettier.semi": true,
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
   // "coc.preferences.formatOnSaveFiletypes": [
   //   "html",
   //   "json",
